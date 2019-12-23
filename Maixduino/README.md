@@ -13,6 +13,6 @@ http://www.elektroniknet.de/embedded/arduino32-die-jungen-wilden-131502.html
 
 CoreMark 1.0 hingegen ist ein vom EEMBC empfohlener Test und zudem an die Arduino-Umgebung angepasst (https://www.eembc.org/coremark/). Beide Benchmarks stehen hier zum Download zur Verfügung.
 
-Die Resultate der beiden Benchmarks zeigen die Abbildungen. 
+Die Resultate der beiden Benchmarks zeigen die Abbildungen Sieve.png und Coremark.png.. 
 Verglichen wurden ein Arduino Due (AT91SAM3X8E@84 MHz), eine ESPduino-32 (ESP-Wroom-32@80 MHz) und ein Maixduino (Kendryte K210 RISC-V@400 MHz).
 
