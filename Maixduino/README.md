@@ -1,4 +1,4 @@
-Maixduino Benchmarks
+**Maixduino Benchmarks**
 
 Um die Performance des Maixduino gegenüber anderen Arduinos resp. Arduino-kompatiblen Mikrocontrollern zu vergleichen, habe ich zwei Benchmarks laufen lassen:
 •	Sieve of Eratosthenes
