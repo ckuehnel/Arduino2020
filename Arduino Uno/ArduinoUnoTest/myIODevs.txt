@@ -1,0 +1,2 @@
+﻿Farbige LED 1 verdrahtet pin 13 mit Werte D, Y
+USB Serial 1 verdrahtet pins 1, 0 mit Wert 115200

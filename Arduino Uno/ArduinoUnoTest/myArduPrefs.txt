@@ -1,0 +1,14 @@
+﻿de
+Auto-indent-Format 1
+Autoeinsatz Schließ-} 0
+Autoeinsatz Semikolons 0
+erlauben Experten Syntax 1
+erzwingen array Schranken 1
+Stichwort logische Operatoren 0
+zeigen programm herunterladen 1
+font schriftart Nummer 2
+font schrifttypgröße Nummer 2
+Tabgröße Multiplikator 2
+'Uno' leiterplatte Version 3
+TWI Pufferlänge 32
+IODevs datei Name myIODevs.txt
