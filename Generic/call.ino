@@ -27,7 +27,7 @@ void setup()
 	
 }
 
-void loop() {	}
+void loop() {}
 
 void f1(int x) 
 {
