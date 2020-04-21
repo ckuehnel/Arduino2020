@@ -1,4 +1,6 @@
 /*
+ * File: Uno_Flasher.ino
+ * 
  * Flashing LEDs as class example
  * Source: https://learn.adafruit.com/multi-tasking-the-arduino-part-1/a-classy-solution
  * Adaption to Easy Module Shield v1 Claus Kuehnel 2020-01-23 info@ckuehnel.ch
