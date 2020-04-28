@@ -68,7 +68,7 @@ void loop()
   if(rSrO < minRsRo) Serial.println("PPM CO2 too high");
   if(rSrO > maxRsRo) Serial.println("PPM CO2 quite low");
   Serial.println();
-  unsigned int bg = map(int(ppm), 0, 200, 0, 10);
+  unsigned int bg = map(int(ppm), 0, 1200, 0, 10);
   Serial.println(bg);
   dispBargraph(bg);
   delay(2000);
