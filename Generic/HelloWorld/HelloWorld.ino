@@ -19,7 +19,8 @@
 //#define BOARD "WeMos LoLin D32 Pro"
 //#define BOARD "Arduino Yun"
 //#define BOARD "M5StickC"
-#define BOARD "Arduino M0"
+//#define BOARD "Arduino M0"
+#define BOARD "Wio Terminal"
 
 // int LED_BUILTIN = 10; // uncomment if LED_BUILIN is not defined
 
@@ -29,7 +30,7 @@ void setup()
 {
   Serial.begin(115200);
 //  while (!Serial); // wait for serial port to connect. Needed for native USB.
-  delay(2000);
+  delay(5000);
   Serial.print("\nHello World from ");
   Serial.println(BOARD);            // used board
   Serial.print("Arduino SW Version ");

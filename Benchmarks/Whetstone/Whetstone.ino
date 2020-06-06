@@ -54,10 +54,12 @@
 //#define BOARD "Arduino MKR 1000"
 //#define BOARD "ESPduino-8266"  // repeated resets 2019-08-15
 //#define BOARD "ESPduino-32"
+#define BOARD "Wio Terminal"
 
 void setup() {
   Serial.begin(115200);
-  while (!Serial) {}
+//  while (!Serial) {}
+  delay(5000); // wait for Serial Monitor
   Serial.print(F("Whetstone Benchmark, Version 1.2 (Language: C)\nfor "));
   Serial.println(BOARD);
   Serial.print(F("Arduino SW Version "));

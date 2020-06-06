@@ -21,20 +21,21 @@ extern "C" int coremark_main(void);
 //#define BOARD "Teensy 4.0"
 //#define BOARD "Longan Nano - GD32FV103"
 //#define BOARD "Arduino Nano Every"
-#define BOARD "Heltec CubeCell"
+//#define BOARD "Heltec CubeCell"
+#define BOARD "Wio Terminal"
 
 void setup()
 {
 	Serial.begin(9600); 
 	//while (!Serial) ; // wait for Arduino Serial Monitor
-	delay(2500);
+	delay(5000);
 	Serial.println(F("CoreMark Performance Benchmark"));
   Serial.print("for ");
   Serial.println(BOARD);
   Serial.print(F("Arduino SW Version "));
   Serial.println(ARDUINO);  // Arduino SW version
-  Serial.print(F("Clock frequency 48"));
-//  Serial.print(F_CPU/1000000); // Oscillator frequency
+  Serial.print(F("Clock frequency "));
+  Serial.print(F_CPU/1000000); // Oscillator frequency
   Serial.println(F(" MHz"));
 	Serial.println();
 	Serial.println("CoreMark measures how quickly your processor can manage linked");
