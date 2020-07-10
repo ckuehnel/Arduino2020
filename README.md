@@ -1,6 +1,11 @@
-﻿# newArduino
+﻿# Arduino2020
 
-Coming soon. Stay tuned.
+Dieses Repository enthält alle Dateien aus dem Buch
+
+Arduino  
+Das umfassende Handbuch.  
+Rheinwerk-Verlag, 2020  
+ISBN 978-3-8362-7345-9
 
 Zusätzliche Informationen in deutscher Sprache sind in meinen Blogs 
 unter https://ckblog2016.net/ und https://ckarduino.wordpress.com/ zu finden.
