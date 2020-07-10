@@ -24,11 +24,12 @@ extern "C" int coremark_main(void);
 //#define BOARD "Heltec CubeCell"
 #define BOARD "Wio Terminal"
 
+
 void setup()
 {
 	Serial.begin(9600); 
 	//while (!Serial) ; // wait for Arduino Serial Monitor
-	delay(5000);
+	delay(2000);
 	Serial.println(F("CoreMark Performance Benchmark"));
   Serial.print("for ");
   Serial.println(BOARD);
