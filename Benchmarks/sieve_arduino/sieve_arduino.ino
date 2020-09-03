@@ -19,13 +19,18 @@
 //#define BOARD "Arduino Due"
 //#define BOARD "Arduino MKR 1000"
 //#define BOARD "ESPduino-8266"
-//#define BOARD "ESPduino-32"
-#define BOARD "Heltec CubeCell"
+#define BOARD "ESPduino-32"
+//#define BOARD "Heltec CubeCell"
+//#define BOARD "Arduino M0"
+
+#include <HardwareSerial.h>
+
+HardwareSerial mySerial;
 
 #define TRUE 1
 #define FALSE 0
 
-#define SERIAL  Serial
+#define SERIAL  mySerial
 
 int i,k, prime,count;
 
@@ -34,7 +39,8 @@ char flags[SIZE+1];
 
 void setup() 
 { 
-  SERIAL.begin(115200);
+  //SERIAL.begin(115200);
+  mySerial.begin(115200, SERIAL_8N1);
   delay(2500); // wait for Serial Monitor
   SERIAL.print(F("Sieve of Eratosthenes - "));
   SERIAL.println(BOARD);

@@ -1,5 +1,5 @@
 /*  
- * File Uno_MQ135-1.ino
+ * File Uno_MQ135.ino
  * Get air quality signal from MQ135 sensor
  * (c) Claus Kuehnel 2018-11-27 info@ckuehnel.ch
  *   
