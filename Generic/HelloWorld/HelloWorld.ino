@@ -22,12 +22,13 @@
 //#define BOARD "Arduino M0"
 //#define BOARD "Wio Terminal"
 //#define BOARD "Adafruit HUZZAH32 – ESP32 Feather Board"
-#define BOARD "ESP32-S2-SAOLA-1M"
+//#define BOARD "ESP32-S2-SAOLA-1M"
+#define BOARD "M5Stack Core"
 
 // int LED_BUILTIN = 10; // uncomment if LED_BUILIN is not defined
 
 // #define Serial SerialUSB // for Arduino M0
-#define Serial Serial0 // for ESP32-S2-SAOLA-1M
+// #define Serial Serial0   // for ESP32-S2-SAOLA-1M
 
 void setup()
 {
