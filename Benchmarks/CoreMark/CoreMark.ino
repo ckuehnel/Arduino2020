@@ -17,18 +17,20 @@ extern "C" int coremark_main(void);
 //#define BOARD "BBC Micro:bit"
 //#define BOARD "NUCLEO-L476RG"
 //#define BOARD "NUCLEO-L053R8"
+#define BOARD "NUCLEO-L412KB"
 //#define BOARD "Maixduino"
 //#define BOARD "Teensy 4.0"
 //#define BOARD "Longan Nano - GD32FV103"
 //#define BOARD "Arduino Nano Every"
 //#define BOARD "Heltec CubeCell"
-#define BOARD "Wio Terminal"
+//#define BOARD "Wio Terminal"
+//#define BOARD "STM32 Bluepill"
 
 
 void setup()
 {
 	Serial.begin(9600); 
-	//while (!Serial) ; // wait for Arduino Serial Monitor
+	while (!Serial) ; // wait for Arduino Serial Monitor
 	delay(2000);
 	Serial.println(F("CoreMark Performance Benchmark"));
   Serial.print("for ");
@@ -49,9 +51,7 @@ void setup()
 	coremark_main(); // Run the benchmark  :-)
 }
 
-void loop()
-{
-}
+void loop() {}
 
 // CoreMark calls this function to print results.
 extern "C" int ee_printf(const char *format, ...)

@@ -15,7 +15,8 @@
 #include <Adafruit_BMP280.h>
 
 #define DEBUG 0
-#define CYCLE 30  // LoRaWAN message cycle
+#define CYCLE 30      // LoRaWAN message cycle
+#define SENDLEVEL 605 // means 6.6 * 580/1024 = 3.9 V 
 
 /******** GLOBAL VARIABLES ****************************************************************/
 const uint8_t  BMP_SCK  = 13;
@@ -50,15 +51,25 @@ void setup(void)
   SPI.begin();                        // Initialize the SPI port
   SPI.beginTransaction(SPISettings(8000000, MSBFIRST, SPI_MODE0));
   
-  pinMode(A7, INPUT);                 // To measure V_Scap
   pinMode(SW_TFT, OUTPUT);            // Switch for V_Scap
+  pinMode(DS2401, OUTPUT);            // Authenticating IC DS2401p+
+  pinMode(RFM_NSS, OUTPUT);           // RFM95W NSS = CS
+  pinMode(SPI_FLASH_CS, OUTPUT);      // External SPI flash
+  digitalWrite(DS2401, HIGH);         // to save power...
   digitalWrite(SW_TFT, HIGH);         // to save power...
+  digitalWrite(SPI_FLASH_CS, HIGH);   // to save power...
 
   //initBMP280();                       // Initialize external temperature sensor
 
   epd.begin();                        // Turn ON & initialize 1.1" EPD
   epd.printText("PaperiNode", 10, 30, 2);
+  //epd.saveFBToFlash(ADDR_FRAMEBUFFER);
   epd.update();                       // Update EPD
+  epd.end();                          // to save power...
+  digitalWrite(RFM_NSS, LOW);         // to save power...
+  flash_power_down();                 // To save power...
+  SPI.endTransaction();               // to save power...
+  SPI.end();                          // to save power...
 
   v_scap = analogRead(A7);            // 1st Dummy-read which always delivers strange values...(to skip)
 
@@ -82,18 +93,25 @@ void loop()
     delay(1);                      // To stabilize analogRead
     v_scap = analogRead(A7);       // Measure V_scap
     digitalWrite(SW_TFT, HIGH);    // Turn OFF voltage divider 
-  
+
+    SPI.begin();
+    SPI.beginTransaction(SPISettings(4000000, MSBFIRST, SPI_MODE0));
+    epd.begin(false);             // Turn ON EPD without refresh to save power
     epd.clear();
+    SPI_Write(RFM_NSS, 0x01, 0x00);          // Switch RFM to sleep
+    //epd.loadFromFlash(ADDR_FRAMEBUFFER);   // Load last image to pre-buffer
     epd.printText("PaperiNode", 10, 5, 1);
   
     float Vbat = v_scap*6.6/1024;
     volt = (uint16_t) (Vbat * 1000 +0.5);  // SuperCap voltage in mV
     String voltage = "Vscap: " + String(Vbat,3) + " V";
+    if (DEBUG) Serial.println("Vscap: " + String(Vbat,3) + " V");
     epd.printText(voltage, 10, 20, 1);
     
     float intTemp = epd.readTemperature();
-    itmp = (int16_t) (intTemp * 100 /*+0.5*/);      // internal Temperature
+    itmp = (int16_t) (intTemp * 100);      // internal Temperature
     String temp = "Int.Temp.: " + String(intTemp,0) + " *C";
+    if (DEBUG) Serial.println("Int.Temp.: " + String(intTemp,0) + " *C");
     epd.printText(temp, 10, 35, 1);
 
     temp = "Ext.Temp.: n.a.";
@@ -102,28 +120,31 @@ void loop()
 
     temp = "C: " + String(++count);
     epd.printText(temp, 100, 5, 1);
-  
+    //epd.saveFBToFlash(ADDR_FRAMEBUFFER);
     if (v_scap > 640) epd.update();               // Trigger a 900ms default update (4GL)
     else              epd.update(EPD_UPD_MONO);   // Trigger a 450ms low power update (2GL)
-
-    if(true)
-    {
-      if (DEBUG) Serial.println(F("Send message..."));
-      lora.TX.Data[0] = highByte(volt);
-      lora.TX.Data[1] = lowByte(volt);
-      lora.TX.Data[2] = highByte(itmp);
-      lora.TX.Data[3] = lowByte(itmp);
-      lora.TX.Count = 4;
+     
+    lora.TX.Data[0] = highByte(volt);
+    lora.TX.Data[1] = lowByte(volt);
+    lora.TX.Data[2] = highByte(itmp);
+    lora.TX.Data[3] = lowByte(itmp);
+    lora.TX.Count = 4;
       
-      lorawan.init();               // Init the RFM95 module
-      delay(50);
-      lorawan.LORA_Send_Data();     // LoRaWAN send_and_receive
+    lorawan.init();               // Init the RFM95 module
+    delay(50);
+    if(v_scap >= SENDLEVEL) 
+    {
+      if (DEBUG) Serial.print(F("Send message..."));
+      lorawan.LORA_Send_Data();                   // LoRaWAN send
+      if (DEBUG) Serial.println(F("Message sent."));
     }
-    //digitalWrite(RFM_NSS, LOW);                          // To save power...
-    //flash_power_down();                                  // To save power...
-    //SPI.endTransaction();                                // To save power...
-    //SPI.end();                                           // To save power...
     if (DEBUG) Serial.println(F("Loop finished.")); delay(500);
+    epd.end();                                   // To save power...
+    digitalWrite(RFM_NSS, LOW);                  // To save power...
+    flash_power_down();                          // To save power...
+    SPI.endTransaction();                        // To save power...
+    SPI.end();
+    
     RTC_ALARM = false;             // Clear the boolean.
   } else LowPower.powerDown(SLEEP_FOREVER, ADC_OFF, BOD_OFF);     // To save power... 
 }
