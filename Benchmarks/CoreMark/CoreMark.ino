@@ -17,7 +17,7 @@ extern "C" int coremark_main(void);
 //#define BOARD "BBC Micro:bit"
 //#define BOARD "NUCLEO-L476RG"
 //#define BOARD "NUCLEO-L053R8"
-#define BOARD "NUCLEO-L412KB"
+//#define BOARD "NUCLEO-L412KB"
 //#define BOARD "Maixduino"
 //#define BOARD "Teensy 4.0"
 //#define BOARD "Longan Nano - GD32FV103"
@@ -25,6 +25,7 @@ extern "C" int coremark_main(void);
 //#define BOARD "Heltec CubeCell"
 //#define BOARD "Wio Terminal"
 //#define BOARD "STM32 Bluepill"
+#define BOARD "Arduino Nano 33 BLE"
 
 
 void setup()
@@ -38,7 +39,7 @@ void setup()
   Serial.print(F("Arduino SW Version "));
   Serial.println(ARDUINO);  // Arduino SW version
   Serial.print(F("Clock frequency "));
-  Serial.print(F_CPU/1000000); // Oscillator frequency
+//  Serial.print(F_CPU/1000000); // Oscillator frequency
   Serial.println(F(" MHz"));
 	Serial.println();
 	Serial.println("CoreMark measures how quickly your processor can manage linked");

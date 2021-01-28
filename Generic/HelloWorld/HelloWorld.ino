@@ -11,7 +11,7 @@
 // define your bord here, comment not used boards
 //#define BOARD "Nucleo-L476RG"
 //#define BOARD "Nucleo-L053R8"
-#define BOARD "Nucleo-L412KB"
+//#define BOARD "Nucleo-L412KB"
 //#define BOARD "Teensy 4.0"
 //#define BOARD "Arduino Uno WiFi R2"
 //#define BOARD "ESPduino - ESP8266"
@@ -24,6 +24,7 @@
 //#define BOARD "Wio Terminal"
 //#define BOARD "Adafruit HUZZAH32 – ESP32 Feather Board"
 //#define BOARD "ESP32-S2-SAOLA-1M"
+#define BOARD "Arduino Nano BLE"
 
 // int LED_BUILTIN = 10; // uncomment if LED_BUILIN is not defined
 
