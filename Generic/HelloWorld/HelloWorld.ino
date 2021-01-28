@@ -11,7 +11,6 @@
 // define your bord here, comment not used boards
 //#define BOARD "Nucleo-L476RG"
 //#define BOARD "Nucleo-L053R8"
-//#define BOARD "Nucleo-L412KB"
 //#define BOARD "Teensy 4.0"
 //#define BOARD "Arduino Uno WiFi R2"
 //#define BOARD "ESPduino - ESP8266"
@@ -24,17 +23,17 @@
 //#define BOARD "Wio Terminal"
 //#define BOARD "Adafruit HUZZAH32 – ESP32 Feather Board"
 //#define BOARD "ESP32-S2-SAOLA-1M"
-#define BOARD "Arduino Nano BLE"
+#define BOARD "M5Stack Core"
 
 // int LED_BUILTIN = 10; // uncomment if LED_BUILIN is not defined
 
-//#define Serial SerialUSB // for Arduino M0
-//#define Serial Serial0 // for ESP32-S2-SAOLA-1M
+// #define Serial SerialUSB // for Arduino M0
+// #define Serial Serial0   // for ESP32-S2-SAOLA-1M
 
 void setup()
 {
   Serial.begin(115200);
-  //while (!Serial); // wait for serial port to connect. Needed for native USB.
+//  while (!Serial); // wait for serial port to connect. Needed for native USB.
   delay(5000);
   Serial.print("\nHello World from ");
   Serial.println(BOARD);            // used board
