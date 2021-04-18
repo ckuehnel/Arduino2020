@@ -2,6 +2,7 @@
  * File: Heltec_LoRa32_Receive.ino
  * 
  * based on Library examples
+ * needs: https://github.com/ThingPulse/esp8266-oled-ssd1306
  * Claus Kühnel 2020-04-06 info@ckuehnel.ch
  */
 #include <SPI.h>
