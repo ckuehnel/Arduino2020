@@ -10,14 +10,14 @@ static int deviceCount = sizeof LYWSD03MMC_ADDR / sizeof LYWSD03MMC_ADDR[0];
 
 BLEClient* pClient;
 
-const char*   WIFI_SSID       = "Sunrise_2.4GHz_8AC2A0";
-const char*   WIFI_PASSWORD   = "u2u7fgzv31Ds";
+const char*   WIFI_SSID       = "<Your SSID>";
+const char*   WIFI_PASSWORD   = "<Your password>";
 
 const char*   MQTT_HOST       = "broker.hivemq.com";
 const int     MQTT_PORT       = 1883;
 const char*   MQTT_CLIENTID   = "mi-temp-client";
-const char*   MQTT_USERNAME   = "ckuehnel";
-const char*   MQTT_PASSWORD   = "Cksz0801";
+const char*   MQTT_USERNAME   = "<Your user name>";
+const char*   MQTT_PASSWORD   = "<Your password>";
 const String  MQTT_BASE_TOPIC = "LYWSD03MMC"; 
 const int     MQTT_RETRY_WAIT = 5000;
 
