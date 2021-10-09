@@ -49,12 +49,15 @@
  */
 // #include <M5Stack.h>
 //#define BOARD "Arduino Uno" // define your board here
-#define BOARD "Arduino Uno WiFi R2"
+//#define BOARD "Arduino Uno WiFi R2"
 //#define BOARD "Arduino Due"
 //#define BOARD "Arduino MKR 1000"
 //#define BOARD "ESPduino-8266"  // repeated resets 2019-08-15
 //#define BOARD "ESPduino-32"
 //#define BOARD "Wio Terminal"
+//#define BOARD "ESP32-C3-DevKitC-02"
+#define BOARD "Raspberry Pi Pico"
+
 
 
 void setup() {

@@ -25,12 +25,14 @@ extern "C" int coremark_main(void);
 //#define BOARD "Heltec CubeCell"
 //#define BOARD "Wio Terminal"
 //#define BOARD "STM32 Bluepill"
-#define BOARD "Arduino Nano 33 BLE"
+//#define BOARD "Arduino Nano 33 BLE"
+//#define BOARD "ESP32-C3-DevKitC-02"
+#define BOARD "Raspberry Pi Pico"
 
 
 void setup()
 {
-	Serial.begin(9600); 
+	Serial.begin(115200); 
 	while (!Serial) ; // wait for Arduino Serial Monitor
 	delay(2000);
 	Serial.println(F("CoreMark Performance Benchmark"));
@@ -39,7 +41,7 @@ void setup()
   Serial.print(F("Arduino SW Version "));
   Serial.println(ARDUINO);  // Arduino SW version
   Serial.print(F("Clock frequency "));
-//  Serial.print(F_CPU/1000000); // Oscillator frequency
+  Serial.print(F_CPU/1000000); // Oscillator frequency
   Serial.println(F(" MHz"));
 	Serial.println();
 	Serial.println("CoreMark measures how quickly your processor can manage linked");

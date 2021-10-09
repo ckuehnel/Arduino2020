@@ -32,7 +32,9 @@
 //#define BOARD "ESPduino-8266"  // repeated resets 2019-08-15
 //#define BOARD "ESPduino-32" 
 //#define BOARD "M5STACK"
-#define BOARD "Heltec CubeCell"
+//#define BOARD "Heltec CubeCell"
+//#define BOARD "ESP32-C3-DevKitC-02"
+#define BOARD "Raspberry Pi Pico"
 
 /* Global Variables: */
 
@@ -102,8 +104,8 @@ void setup() {
   Serial.println(BOARD);
   Serial.print(F("Arduino SW Version "));
   Serial.println(ARDUINO);  // Arduino SW version
-  Serial.print(F("Clock frequency 48"));
- // Serial.print(F_CPU/1000000); // Oscillator frequency
+  Serial.print(F("Clock frequency "));
+  Serial.print(F_CPU/1000000); // Oscillator frequency
   Serial.println(F(" MHz"));
 
   Next_Ptr_Glob = (Rec_Pointer)malloc (sizeof (Rec_Type));
