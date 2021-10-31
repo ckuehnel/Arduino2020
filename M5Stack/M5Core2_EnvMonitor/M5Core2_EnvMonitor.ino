@@ -44,6 +44,9 @@ uint16_t maxCount = sCYCLE/mCYCLE;
 int length;
 int count = -1;
 
+int previous_rssiValue;
+int current_rssiValue;
+
 WiFiClient client;
 
 void setup()
@@ -55,30 +58,22 @@ void setup()
   M5.Lcd.printf("M5Stack Core2");
   M5.Lcd.setCursor(20, 18);
   M5.Lcd.printf("Environmental Monitoring");
-  M5.Lcd.setTextColor(WHITE);
 
   Serial.println("\nM5Stack Core2 Environmental Monitoring");
 
-  // We start by connecting to a WiFi network
-  Serial.print("\nConnecting to ");
-  Serial.println(ssid);
+  initWiFi();
 
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) 
-  {
-    delay(500);
-    Serial.print(".");
-  }
-  Serial.println("\nWiFi connected");
-  Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());
+  current_rssiValue = WiFi.RSSI();
+  displayRSSI();
+
+  M5.Lcd.setTextColor(WHITE);
 
   Serial.println("Sensor Inititialization...");
   initSensor();     // initialize ENV.II sensor
 
   FastLED.addLeds<SK6812, LEDS_PIN>(ledsBuff, LEDS_NUM);
   LEDsOn(); delay(200); LEDsOff();
-  Serial.println("Initialization done.");
+  Serial.println("Initialization done.\n");
 }
 
 void loop() 
@@ -89,11 +84,23 @@ void loop()
   Serial.print("Soil Moisture = "); Serial.print(soilMoisture); Serial.println(" %");
   if (soilMoisture < moistureLevel) LEDsOn();
   else LEDsOff();
+
+  current_rssiValue = WiFi.RSSI();
+  Serial.print("RSSI = "); Serial.print(current_rssiValue); Serial.println(" dBm\n");
+  displayRSSI();
+  
   current_temperature = sht31Temperature; displayTemperature();
   current_humidity = sht31Humidity; displayHumidity();
   current_moisture = soilMoisture; displayMoisture();
+  
   if (count >= maxCount || count == 0)
   {
+    if (WiFi.status() != WL_CONNECTED) 
+    {
+      Serial.println("Reconnecting to WiFi...");
+      ESP.restart();
+    }
+    
     String message  = "Temperature = ";
            message += String(sht31Temperature, 1);
            message += " °C\n";
@@ -102,7 +109,10 @@ void loop()
            message += " rH\n";
            message += "Soil Moisture = ";
            message += String(soilMoisture);
-           message += " (0-100)";
+           message += " (0-100)\n";
+           message += "RSSI = ";
+           message += String(current_rssiValue);
+           message += " dBm";
     char arr[message.length() + 1];
     for (int i = 0; i < sizeof(arr); i++) arr[i] = message[i]; 
     pushover(arr, 0); 

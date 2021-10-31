@@ -74,6 +74,28 @@ void displayMoisture()
    }
 }
 
+void displayRSSI()
+{
+   if(current_rssiValue != previous_rssiValue)
+   {
+      M5.Lcd.setCursor(80, 36);
+      M5.Lcd.setTextColor(BLACK);
+      M5.Lcd.setTextSize(2);
+      M5.Lcd.print("RSSI: ");
+      M5.Lcd.print(previous_rssiValue);
+      M5.Lcd.print(" dBm");
+      
+      M5.Lcd.setCursor(80, 36);
+      M5.Lcd.setTextColor(GREEN);
+      M5.Lcd.setTextSize(2);
+      M5.Lcd.print("RSSI: ");
+      M5.Lcd.print(current_rssiValue);
+      M5.Lcd.print(" dBm");
+      
+      previous_rssiValue = current_rssiValue;
+   }
+}
+
 String convertFloatToString(float f)
 {
   String s = String(f,1);
