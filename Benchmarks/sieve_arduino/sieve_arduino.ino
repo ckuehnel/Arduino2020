@@ -23,7 +23,8 @@
 //#define BOARD "Heltec CubeCell"
 //#define BOARD "Arduino M0"
 //#define BOARD "ESP32-C3-DevKitC-02"
-#define BOARD "Raspberry Pi Pico"
+//#define BOARD "Raspberry Pi Pico"
+#define BOARD "Arduino Portenta H7 - Cortex-M7"
 
 //#include <HardwareSerial.h>
 
@@ -50,7 +51,7 @@ void setup()
   SERIAL.println(ARDUINO);  // Arduino SW version
   SERIAL.print(F("Clock frequency "));
   SERIAL.print(F_CPU/1000000);      // Oscillator frequency
-  SERIAL.println(F(" MHz"));
+  SERIAL.println(F(" MHz")); 
   
   /*-------------------------------------------------------------------
   The following code is an implementation of the Sieve of Eratosthenes.

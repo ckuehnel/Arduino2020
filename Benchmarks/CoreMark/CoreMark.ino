@@ -27,7 +27,8 @@ extern "C" int coremark_main(void);
 //#define BOARD "STM32 Bluepill"
 //#define BOARD "Arduino Nano 33 BLE"
 //#define BOARD "ESP32-C3-DevKitC-02"
-#define BOARD "Raspberry Pi Pico"
+//#define BOARD "Raspberry Pi Pico"
+#define BOARD "Arduino Portenta H7 - Cortex-M7"
 
 
 void setup()
@@ -42,7 +43,7 @@ void setup()
   Serial.println(ARDUINO);  // Arduino SW version
   Serial.print(F("Clock frequency "));
   Serial.print(F_CPU/1000000); // Oscillator frequency
-  Serial.println(F(" MHz"));
+  Serial.println(F(" MHz")); 
 	Serial.println();
 	Serial.println("CoreMark measures how quickly your processor can manage linked");
 	Serial.println("lists, compute matrix multiply, and execute state machine code.");
