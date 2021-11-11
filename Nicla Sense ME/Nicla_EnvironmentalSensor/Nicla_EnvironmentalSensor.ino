@@ -70,7 +70,7 @@ void loop()
     Serial.println(String("BSEC: ") + bsec.toString());
 
     if (eCO2 < 800) nicla::leds.setColor(green);
-    if (eCO2 >= 800 && eCO2 < 1200) nicla::leds.setColor(yellow);
+    if (eCO2 >= 800 && eCO2 < 1200) nicla::leds.setColor(yellow); // it's near green, could be optimized
     if (eCO2 >= 1200) nicla::leds.setColor(red);
   }
 }
