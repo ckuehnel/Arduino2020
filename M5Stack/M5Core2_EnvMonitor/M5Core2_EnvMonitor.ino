@@ -81,6 +81,7 @@ void loop()
   count++;
   getValues();
   soilMoisture = map(analogRead(soilPin), waterValue, airValue, 100, 0); // read analog value of EARTH unit and map it to 0 - 100
+  soilMoisture = constrain(soilMoisture, 0, 100);
   Serial.print("Soil Moisture = "); Serial.print(soilMoisture); Serial.println(" %");
   if (soilMoisture < moistureLevel) LEDsOn();
   else LEDsOff();
