@@ -94,7 +94,7 @@ void loop()
          message += " rH\n";
          message += "Pressure = ";
          message += String(bmePressure, 0);
-         message += " hParH\n";
+         message += " hPa\n";
          message += "Altitude = ";
          message += String(bmeAltitude, 1);
          message += " m\n";
