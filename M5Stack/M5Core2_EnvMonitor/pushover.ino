@@ -1,4 +1,4 @@
-byte pushover(char *pushovermessage, int priority)
+void pushover(char *pushovermessage, int priority)
 {
   String message = pushovermessage;
 
