@@ -21,9 +21,13 @@ const int LEDS_NUM = 10;
 CRGB ledsBuff[LEDS_NUM];
 
 const int soilPin = 36;         // analog input for M5Stack Core2
-const int airValue = 4095;      // adapt it to your conditions
-const int waterValue = 2000;    // adapt it to your conditions
-const int moistureLevel = 50;   // adapt it to your conditions
+// for M5Stack Earth Unit
+//const int airValue = 4095;      // adapt it to your conditions
+//const int waterValue = 2000;    // adapt it to your conditions
+// for capacitive soil mosisture sensor
+const int airValue = 770;      // adapt it to your conditions
+const int waterValue = 1270;    // adapt it to your conditions
+const int moistureLevel = 30;   // adapt it to your conditions
 uint16_t soilMoisture = 0; 
 
 float sht31Temperature, sht31Humidity;
@@ -80,7 +84,9 @@ void loop()
 {
   count++;
   getValues();
-  soilMoisture = map(analogRead(soilPin), waterValue, airValue, 100, 0); // read analog value of EARTH unit and map it to 0 - 100
+  Serial.print("Soil Moisture Raw Data = "); Serial.println(analogRead(soilPin));
+  //soilMoisture = map(analogRead(soilPin), waterValue, airValue, 100, 0); // read analog value from EARTH unit and map it to 0 - 100
+  soilMoisture = map(analogRead(soilPin), airValue, waterValue, 0, 100);   // read analog value from capacitive soil moisture sensor and map it to 0 - 100
   soilMoisture = constrain(soilMoisture, 0, 100);
   Serial.print("Soil Moisture = "); Serial.print(soilMoisture); Serial.println(" %");
   if (soilMoisture < moistureLevel) LEDsOn();

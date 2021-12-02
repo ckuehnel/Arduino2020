@@ -6,9 +6,13 @@
  * 2021-11-16 Claus Kühnel info@ckuehnel.ch
  */
 
+#include <M5Core2.h>
+
+const int soilPin = 36;
+
 void setup() 
 {
-  Serial.begin(115200); 
+  M5.begin();       //Init M5Stack.  
   while(!Serial);
   Serial.println("Get calibration values for Soil Moisture Sensors");
   Serial.println("Hold the sensor in air to get the airValue and notify it.");
@@ -18,7 +22,10 @@ void setup()
 void loop() 
 {
   uint16_t val;
-  val = analogRead(36); //connect sensor to PortB
+  val = analogRead(soilPin); //connect sensor to PortB
   Serial.println(val);  //print the value to serial port
+  Serial.print("\t");
+  Serial.print(val*3300/4096);
+  Serial.println(" mV");
   delay(1000);
 }
