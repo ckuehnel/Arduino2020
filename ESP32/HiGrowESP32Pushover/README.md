@@ -2,3 +2,5 @@
 
 Programm zum o.a. Blogbeitrag \
 https://ckarduino.wordpress.com/2021/11/16/messung-von-umgebungsbedingungen-fur-pflanzen-mit-lilygottgo-t-higrow-sensor/
+
+Ergebnis der Compilation ist im Screenshot dokumentiert.
