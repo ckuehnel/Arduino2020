@@ -5,6 +5,7 @@ HardwareSerial GPS(2);
 
 FuGPS fuGPS(GPS);
 bool gpsAlive = false;
+uint8_t Vbat, VbatOld = 0;
 
 void setup() 
 {
@@ -25,7 +26,6 @@ void loop()
 {
   byte quality, satellites;
   float latitude, longitude, _speed;
-  uint8_t Vbat;
   
   // Valid NMEA message
     if (fuGPS.read())
@@ -55,10 +55,15 @@ void loop()
         M5.Lcd.setCursor(20, 80);
         M5.Lcd.print("Bat[%]:");
         M5.Lcd.setCursor(110, 80);
-        M5.Lcd.print(Vbat, BLACK);
         Vbat = M5.Power.getBatteryLevel();
-        M5.Lcd.setCursor(110, 80);
-        M5.Lcd.print(Vbat);
+        if (Vbat != VbatOld)
+        {
+          VbatOld = Vbat;
+          M5.Lcd.fillRect(110, 80, 50, 20, BLACK);
+          M5.Lcd.setCursor(110, 80);
+          M5.Lcd.print(Vbat);
+        }
+
 
         if (fuGPS.hasFix() == true)
         {
